@@ -3,3 +3,4 @@ node_modules/
 dist/
 sandboxs/**/__entry.tsx
 sandboxs/**/__entry.jsx
+.trae
