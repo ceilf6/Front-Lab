@@ -1,5 +1,8 @@
 # 模型适配层（Model Wrapper）。只负责“把 prompt+history 发给模型服务并拿到回复”，
 # 屏蔽具体 API（OpenAI SDK、base_url、model 名、temperature 等），一般不做工具选择/解析/执行。
+# export SILICONFLOW_API_KEY='你的siliconflow-key'
+# export SERPER_API_KEY='你的serper-key'
+# /Users/a86198/Desktop/Lab/.venv/bin/python agent.py
 
 from __future__ import annotations
 

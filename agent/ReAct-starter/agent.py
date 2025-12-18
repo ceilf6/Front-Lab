@@ -1,6 +1,7 @@
 # 编排器（Orchestrator）。负责循环（ReAct）、决定何时/用什么工具、解析模型输出里的“行动/行动输入”、执行工具、把“观察结果”再喂回模型，直到产出最终答案。
 
 import json5
+import os
 import re
 import time
 
@@ -153,7 +154,20 @@ class ReactAgent:
         return self._format_response(response)
 
 if __name__ == '__main__':
-    agent = ReactAgent(api_key="your api key")
+    # 推荐通过环境变量提供密钥，避免在代码里硬编码
+    # export SILICONFLOW_API_KEY='你的siliconflow-key'
+    # export SERPER_API_KEY='你的serper-key'
+    api_key = os.getenv("SILICONFLOW_API_KEY", "").strip()
+    if not api_key:
+        raise ValueError(
+            "缺少 SILICONFLOW_API_KEY：请先在终端 export SILICONFLOW_API_KEY='...'(以及可选的 SERPER_API_KEY)。"
+        )
 
-    response = agent.run(("React前端框架和开发Agent的ReAct框架名称好像啊，你有什么见解吗？"), max_iterations=3, verbose=True)
+    agent = ReactAgent(api_key=api_key)
+
+    response = agent.run(
+        "React前端框架和开发Agent的ReAct框架名称好像啊，你有什么见解吗？",
+        max_iterations=3,
+        verbose=True,
+    )
     print("最终答案：", response)
