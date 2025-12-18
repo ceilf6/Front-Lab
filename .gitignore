@@ -4,3 +4,6 @@ dist/
 sandboxs/**/__entry.tsx
 sandboxs/**/__entry.jsx
 .trae
+
+# LLM 和工具的 API 配置, 每个目录下自行管理
+APIKEY*
